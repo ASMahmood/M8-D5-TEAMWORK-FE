@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
       // console.log(artists.data);
       dispatch({
         type: "POPULATE_ARTISTS",
-        payload: artists.data,
+        payload: artists,
       });
     }),
 });

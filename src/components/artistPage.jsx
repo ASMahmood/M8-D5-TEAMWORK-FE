@@ -20,12 +20,12 @@ const mapDispatchToProps = (dispatch) => ({
       if (response.ok) {
         dispatch({
           type: "SET_TOP_ALBUMS",
-          payload: tracks.data,
+          payload: tracks,
         });
       } else {
         dispatch({
           type: "SET_ERROR",
-          payload: tracks.data,
+          payload: tracks,
         });
       }
     }),
@@ -41,12 +41,12 @@ const mapDispatchToProps = (dispatch) => ({
       if (response.ok) {
         dispatch({
           type: "POPULATE_ALBUMS",
-          payload: albums.data,
+          payload: albums,
         });
       } else {
         dispatch({
           type: "SET_ERROR",
-          payload: albums.data,
+          payload: albums,
         });
       }
     }),
