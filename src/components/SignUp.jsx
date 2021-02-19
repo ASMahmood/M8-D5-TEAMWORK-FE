@@ -3,13 +3,34 @@ import { Container, Image, Button } from "react-bootstrap";
 import logo from "../logo/Spotify_Logo_Black.png";
 import fb from "../logo/fb.png";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { withRouter } from "react-router-dom";
 //import useForm from "./UseForm"; // IMPORTING THE COMPONENT WITH HOOKS
 
 class SignUp extends Component {
   //const { handleChange, values, handleSubmit } = useForm(); // DESTRUCTURING HOOKS TO BE ABLE TO USE THEM IN THIS COMPONENT
-
-  async postData() {
+  state = {
+    email: "",
+    password:""
+  }
+async postData() {
     try {
+
+      let user = await fetch("http://localhost:3003/users/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password,
+        }),
+      });
+      let response = await user.json();
+      console.log(response);
+      if (user.ok) {
+        this.props.history.push("/");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -53,7 +74,7 @@ class SignUp extends Component {
               type="email"
               placeholder="Email adress or username"
               // value={values.email} // TAKES THE VALUE FROM MY CUSTOM HOOKS IN USEFORM COMPONENT
-              // onChange={handleChange} // THE FUNCTION THAT LISTENS TO THE CHANGE OF THE VALUE
+              onChange={(e) => this.setState({email : e.target.value})} // THE FUNCTION THAT LISTENS TO THE CHANGE OF THE VALUE
             />
             <br />
             <label>Password</label>
@@ -64,7 +85,7 @@ class SignUp extends Component {
               type="password"
               placeholder="Password"
               // value={values.password}
-              // onChange={handleChange}
+              onChange={(e) => this.setState({password : e.target.value})}
             />
             <br />
             <a href="#"> Forgot your password? </a>
@@ -73,7 +94,12 @@ class SignUp extends Component {
               <p className="ml-n5 my-auto">Remember me</p>
               <button
                 className="form-input-submit"
-                onClick={() => this.postData()}
+
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.postData();
+                }}
+
               >
                 LOG IN
               </button>
@@ -88,4 +114,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);
