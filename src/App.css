@@ -341,3 +341,9 @@ p.subtitle {
 .addPlayIcon {
   cursor: pointer;
 }
+
+#plzLogin {
+  margin: 45vh, 45vw;
+  z-index: 10;
+  color: white;
+}
