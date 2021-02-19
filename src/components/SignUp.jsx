@@ -9,15 +9,11 @@ class SignUp extends Component {
   //const { handleChange, values, handleSubmit } = useForm(); // DESTRUCTURING HOOKS TO BE ABLE TO USE THEM IN THIS COMPONENT
 
   async postData() {
-
-      try {
-        
-      } catch (error) {
-        console.log(error)
-      }
-
+    try {
+    } catch (error) {
+      console.log(error);
+    }
   }
-
 
   render() {
     return (
@@ -26,19 +22,28 @@ class SignUp extends Component {
           <Image src={logo} id="signup-page-logo" />
         </div>
         <div className="signup-items">
-          <Button className="signup-btn fb my-2">
-            <Image src={fb} id="fb" />
-            CONTINUE WITH FACEBOOK
-          </Button>
-          <Button className="signup-btn apple my-2">CONTINUE WITH APPLE</Button>
-          <Button className="signup-btn google my-2">
-            CONTINUE WITH GOOGLE
-          </Button>
+          <a href="http://localhost:3003/users/3rdparty/facebook">
+            <Button className="signup-btn fb my-2 w-100">
+              <Image src={fb} id="fb" />
+              CONTINUE WITH FACEBOOK
+            </Button>
+          </a>
+          <a href="http://localhost:3003/users/3rdparty/spotify">
+            <Button className="signup-btn apple my-2 w-100">
+              CONTINUE WITH SPOTIFY ...wait
+            </Button>
+          </a>
+          <a href="https://www.youtube.com/watch?v=2ocykBzWDiM">
+            <Button className="signup-btn google my-2 w-100">
+              CONTINUE WITH GOOGLE
+            </Button>
+          </a>
         </div>
         <h6>OR</h6>
         <div className="form-inputs">
-          <form className="form" 
-          // onSubmit={handleSubmit}
+          <form
+            className="form"
+            // onSubmit={handleSubmit}
           >
             <label>Email addess or username</label>
             <input
@@ -69,8 +74,9 @@ class SignUp extends Component {
               <button
                 className="form-input-submit"
                 onClick={() => this.postData()}
-                
-              >LOG IN</button>
+              >
+                LOG IN
+              </button>
             </div>
           </form>
           <hr />
