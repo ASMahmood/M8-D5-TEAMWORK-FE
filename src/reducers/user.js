@@ -16,6 +16,12 @@ export default function (state = initialState, action) {
         ...state,
         showModal: action.payload,
       };
+    case "POPULATE_USER":
+      return {
+        ...state,
+        username: action.payload.name,
+        imgUrl: action.payload.imgUrl,
+      };
     case "GENERATE_PLAYLIST":
       return {
         ...state,

@@ -14,6 +14,7 @@ export const initialState = {
     email: "",
     playlists: [],
     showModal: false,
+    imgUrl: "",
   },
   player: {
     selectedSong: null,
