@@ -15,14 +15,17 @@ const mapDispatchToProps = (dispatch) => ({
   populateArtists: (genre) =>
     dispatch(async (dispatch, getState) => {
       let response = await fetch(
-        `http://localhost:3003/deezer/artists/` + genre
+        `http://localhost:3003/deezer/artists/` + genre,
+        { credentials: "include" }
       );
-      let artists = await response.json();
-      // console.log(artists.data);
-      dispatch({
-        type: "POPULATE_ARTISTS",
-        payload: artists,
-      });
+      if (response.ok) {
+        let artists = await response.json();
+        // console.log(artists.data);
+        dispatch({
+          type: "POPULATE_ARTISTS",
+          payload: artists,
+        });
+      }
     }),
 });
 
@@ -40,7 +43,7 @@ class Home extends React.Component {
   render() {
     const { loading } = this.props.ui;
     return (
-      <div className="Home">
+      <div className="Home w-100 ">
         <div className="main-page row mt-5">
           {loading ? (
             <h4>
@@ -51,7 +54,7 @@ class Home extends React.Component {
                 variant="success"
               />
             </h4>
-          ) : (
+          ) : this.props.ui.artists.artistList.length > 0 ? (
             <>
               <Row className="align-items-center justify-content-center genreSelect">
                 <ListGroup horizontal>
@@ -85,6 +88,8 @@ class Home extends React.Component {
                 </Row>
               ))}
             </>
+          ) : (
+            <h1 id="plzLogin">PLEASE LOGIN</h1>
           )}
         </div>
       </div>

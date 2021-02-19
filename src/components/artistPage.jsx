@@ -12,7 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTrackswithThunk: (id) =>
     dispatch(async (dispatch) => {
       const url = "http://localhost:3003/deezer/artists/";
-      const response = await fetch(url + id + "/toptracks");
+      const response = await fetch(url + id + "/toptracks", {
+        credentials: "include",
+      });
 
       const tracks = await response.json();
       // console.log("tracks:", tracks.data);
@@ -33,7 +35,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAlbumswithThunk: (id) =>
     dispatch(async (dispatch) => {
       const url = "http://localhost:3003/deezer/artists/";
-      const response = await fetch(url + id + "/albums");
+      const response = await fetch(url + id + "/albums", {
+        credentials: "include",
+      });
 
       const albums = await response.json();
       console.log("albums:", albums.data);
@@ -54,7 +58,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchArtistwithThunk: (id) =>
     dispatch(async (dispatch) => {
       const url = "http://localhost:3003/deezer/artists/";
-      const response = await fetch(url + id + "/profile");
+      const response = await fetch(url + id + "/profile", {
+        credentials: "include",
+      });
 
       const artist = await response.json();
       console.log("artist:", artist);

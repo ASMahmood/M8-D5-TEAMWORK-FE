@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   assignAlbum: (id) =>
     dispatch(async (dispatch, getState) => {
       const url = "http://localhost:3003/deezer/album/";
-      const resp = await fetch(url + id);
+      const resp = await fetch(url + id, { credentials: "include" });
       let album = await resp.json();
       dispatch({
         type: "ASSIGN_CURRENT_ALBUM",
