@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
+  nowPlaying: (song, img) =>
+    dispatch({ type: "NOW_PLAYING", payload: { song, img } }),
   fetchTrackswithThunk: (id) =>
     dispatch(async (dispatch) => {
       const url = "http://localhost:3003/deezer/artists/";
@@ -118,19 +120,19 @@ class artistPage extends React.Component {
                 <h5 style={{ color: "white", marginBottom: 30 }}>Popular</h5>
 
                 {tracks.slice(0, this.state.show).map((track) => (
-                  <div className="d-flex track">
+                  <div
+                    className="d-flex track"
+                    onClick={() =>
+                      this.props.nowPlaying(track, track.album.cover_small)
+                    }
+                  >
                     <Image
                       className="artist-song-cover"
                       src={track.album.cover_small}
                       alt=""
                     />
 
-                    <p
-                      className="ml-2"
-                      onClick={() => this.props.nowPlaying(track)}
-                    >
-                      {track.title_short}
-                    </p>
+                    <p className="ml-2">{track.title_short}</p>
                     <p className="subtitle ml-2">{track.rank}</p>
                     <div className=" ml-auto">
                       <p className="align-self-start fas fa-music d-inline ">

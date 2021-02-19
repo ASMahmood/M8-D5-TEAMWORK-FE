@@ -18,6 +18,7 @@ export const initialState = {
   },
   player: {
     selectedSong: null,
+    img: null,
     queue: [],
     currentlyPlaying: false,
   },

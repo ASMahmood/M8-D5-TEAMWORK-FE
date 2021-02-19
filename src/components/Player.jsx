@@ -19,7 +19,7 @@ class Player extends React.Component {
         <div className="player-left">
           <Image
             className="player-song-cover"
-            src={this.props.ui.songs.selectedAlbum.cover_small}
+            src={this.props.player.img}
             alt=""
           />
           <div className="player-song-info ml-2 my-auto">

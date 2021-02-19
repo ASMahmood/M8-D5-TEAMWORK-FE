@@ -35,7 +35,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: "ADD_TO_FAVOURITE", payload: album }),
   removeFavorite: (id) =>
     dispatch({ type: "REMOVE_FROM_FAVOURITES", payload: id }),
-  nowPlaying: (song) => dispatch({ type: "NOW_PLAYING", payload: song }),
+  nowPlaying: (song, img) =>
+    dispatch({ type: "NOW_PLAYING", payload: { song, img } }),
 });
 
 class AlbumPage extends React.Component {
@@ -105,7 +106,12 @@ class AlbumPage extends React.Component {
                       {songList.map((track, index) => (
                         <li
                           key={index}
-                          onClick={() => this.props.nowPlaying(track)}
+                          onClick={() =>
+                            this.props.nowPlaying(
+                              track,
+                              selectedAlbum.cover_big
+                            )
+                          }
                           id="track"
                           className="d-flex justify-content-between mb-2"
                         >

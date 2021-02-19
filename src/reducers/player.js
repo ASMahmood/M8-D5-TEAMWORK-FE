@@ -4,7 +4,8 @@ export default function nowPlaying(state = initialState, action) {
     case "NOW_PLAYING":
       return {
         ...state,
-        selectedSong: action.payload,
+        selectedSong: action.payload.song,
+        img: action.payload.img,
       };
     case "IN_QUEUE":
       return state.filter((song) => song.id !== action.payload);
