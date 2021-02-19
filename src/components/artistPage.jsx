@@ -94,7 +94,7 @@ class artistPage extends React.Component {
 
     return (
       <>
-        <div className="mb-5 min-vw-100" style={{ marginLeft: "20%" }}>
+        <div className="mb-5 min-vw-100" style={{ paddingLeft: "20%" }}>
           <div className=" min-vw-100 vh-20">
             <img
               style={{ objectFit: "contain" }}
@@ -125,7 +125,12 @@ class artistPage extends React.Component {
                       alt=""
                     />
 
-                    <p className="ml-2">{track.title_short}</p>
+                    <p
+                      className="ml-2"
+                      onClick={() => this.props.nowPlaying(track)}
+                    >
+                      {track.title_short}
+                    </p>
                     <p className="subtitle ml-2">{track.rank}</p>
                     <div className=" ml-auto">
                       <p className="align-self-start fas fa-music d-inline ">

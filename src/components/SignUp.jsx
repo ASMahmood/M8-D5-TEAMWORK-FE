@@ -12,9 +12,9 @@ class SignUp extends Component {
     email: "",
     password:""
   }
-
-  async postData() {
+async postData() {
     try {
+
       let user = await fetch("http://localhost:3003/users/login", {
         method: "POST",
         credentials: "include",
@@ -43,14 +43,22 @@ class SignUp extends Component {
           <Image src={logo} id="signup-page-logo" />
         </div>
         <div className="signup-items">
-          <Button className="signup-btn fb my-2">
-            <Image src={fb} id="fb" />
-            CONTINUE WITH FACEBOOK
-          </Button>
-          <Button className="signup-btn apple my-2">CONTINUE WITH APPLE</Button>
-          <Button className="signup-btn google my-2">
-            CONTINUE WITH GOOGLE
-          </Button>
+          <a href="http://localhost:3003/users/3rdparty/facebook">
+            <Button className="signup-btn fb my-2 w-100">
+              <Image src={fb} id="fb" />
+              CONTINUE WITH FACEBOOK
+            </Button>
+          </a>
+          <a href="http://localhost:3003/users/3rdparty/spotify">
+            <Button className="signup-btn apple my-2 w-100">
+              CONTINUE WITH SPOTIFY ...wait
+            </Button>
+          </a>
+          <a href="https://www.youtube.com/watch?v=2ocykBzWDiM">
+            <Button className="signup-btn google my-2 w-100">
+              CONTINUE WITH GOOGLE
+            </Button>
+          </a>
         </div>
         <h6>OR</h6>
         <div className="form-inputs">
@@ -86,10 +94,12 @@ class SignUp extends Component {
               <p className="ml-n5 my-auto">Remember me</p>
               <button
                 className="form-input-submit"
+
                 onClick={(e) => {
                   e.preventDefault();
                   this.postData();
                 }}
+
               >
                 LOG IN
               </button>

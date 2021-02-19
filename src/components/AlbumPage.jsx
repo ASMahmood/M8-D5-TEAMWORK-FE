@@ -60,63 +60,71 @@ class AlbumPage extends React.Component {
         {!this.props.ui.loading && (
           <div className="album-page">
             <Container>
-              <img
-                style={{ marginLeft: 100, width: 400, height: 400 }}
-                src={selectedAlbum.cover_big}
-                alt=""
-              />
-
               <Row>
-                {this.props.user.liked.find(
-                  (album) => album.id === selectedAlbum.id
-                ) ? (
-                  <Button
-                    style={{ marginLeft: 220 }}
-                    className="btn btn-lg mt-3 mb-1 "
-                    variant="danger"
-                    size="small"
-                    onClick={() => this.props.removeFavorite(selectedAlbum.id)}
-                  >
-                    Remove favorite
-                  </Button>
-                ) : (
-                  <Button
-                    style={{ marginLeft: 220 }}
-                    className="btn btn-lg mt-3 mb-1 "
-                    variant="success"
-                    size="small"
-                    onClick={() => this.props.addFavorite(selectedAlbum)}
-                  >
-                    Add to favorite
-                  </Button>
-                )}
+                <Col xs={12} md={6}>
+                  <img
+                    style={{ marginLeft: 100, width: 400, height: 400 }}
+                    src={selectedAlbum.cover_big}
+                    alt=""
+                  />
+
+                  <Row>
+                    {this.props.user.liked.find(
+                      (album) => album.id === selectedAlbum.id
+                    ) ? (
+                      <Button
+                        style={{ marginLeft: 220 }}
+                        className="btn btn-lg mt-3 mb-1 "
+                        variant="danger"
+                        size="small"
+                        onClick={() =>
+                          this.props.removeFavorite(selectedAlbum.id)
+                        }
+                      >
+                        Remove favorite
+                      </Button>
+                    ) : (
+                      <Button
+                        style={{ marginLeft: 220 }}
+                        className="btn btn-lg mt-3 mb-1 "
+                        variant="success"
+                        size="small"
+                        onClick={() => this.props.addFavorite(selectedAlbum)}
+                      >
+                        Add to favorite
+                      </Button>
+                    )}
+                  </Row>
+                </Col>
+                <Col xs={12} md={6}>
+                  <div className="track-list">
+                    <h2 style={{ color: "white", marginBottom: 30 }}>
+                      {selectedAlbum.title}
+                    </h2>
+                    <ul>
+                      {songList.map((track, index) => (
+                        <li
+                          key={index}
+                          onClick={() => this.props.nowPlaying(track)}
+                          id="track"
+                          className="d-flex justify-content-between mb-2"
+                        >
+                          {track.title}{" "}
+                          <span>
+                            <PlaylistAddIcon
+                              fontSize="small"
+                              onClick={() => this.props.showModal(true)}
+                            />
+                            {track.duration}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Col>
               </Row>
             </Container>
 
-            <div className="track-list ml-5">
-              <h2 style={{ color: "white", marginBottom: 30 }}>
-                {selectedAlbum.title}
-              </h2>
-              <ul>
-                {songList.map((track, index) => (
-                  <li
-                    key={index}
-                    onClick={() => this.props.nowPlaying(track)}
-                    id="track"
-                    className="d-flex justify-content-between"
-                  >
-                    {track.title}{" "}
-                    <span>
-                      <PlaylistAddIcon
-                        fontSize="small"
-                        onClick={() => this.props.showModal(true)}
-                      />
-                      {track.duration}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
             <Modal
               show={this.props.user.showModal}
               onHide={() => this.props.showModal(false)}
