@@ -8,6 +8,10 @@ import { withRouter } from "react-router-dom";
 
 class SignUp extends Component {
   //const { handleChange, values, handleSubmit } = useForm(); // DESTRUCTURING HOOKS TO BE ABLE TO USE THEM IN THIS COMPONENT
+  state = {
+    email: "",
+    password:""
+  }
 
   async postData() {
     try {
@@ -18,8 +22,8 @@ class SignUp extends Component {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          email: "test@test.com",
-          password: "1234",
+          email: this.state.email,
+          password: this.state.password,
         }),
       });
       let response = await user.json();
@@ -62,7 +66,7 @@ class SignUp extends Component {
               type="email"
               placeholder="Email adress or username"
               // value={values.email} // TAKES THE VALUE FROM MY CUSTOM HOOKS IN USEFORM COMPONENT
-              // onChange={handleChange} // THE FUNCTION THAT LISTENS TO THE CHANGE OF THE VALUE
+              onChange={(e) => this.setState({email : e.target.value})} // THE FUNCTION THAT LISTENS TO THE CHANGE OF THE VALUE
             />
             <br />
             <label>Password</label>
@@ -73,7 +77,7 @@ class SignUp extends Component {
               type="password"
               placeholder="Password"
               // value={values.password}
-              // onChange={handleChange}
+              onChange={(e) => this.setState({password : e.target.value})}
             />
             <br />
             <a href="#"> Forgot your password? </a>
